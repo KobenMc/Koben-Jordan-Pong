@@ -12,13 +12,16 @@ public class RightPaddleMovement : MonoBehaviour
     
     void ControlByRightPlayer()
     {
-        //Set speed and get y axis
-        float verticalInput = Input.GetAxis("Vertical");
+        //Set speed 
         float movementSpeed = 5f;
         //Move when pressing W or S
-        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.UpArrow))
         {
-            transform.position = transform.position + new Vector3(0, verticalInput * movementSpeed * Time.deltaTime, 0);
+            transform.position = transform.position + new Vector3(0,  movementSpeed * Time.deltaTime, 0);
+        }
+        if( Input.GetKey(KeyCode.DownArrow))
+        {
+            transform.position = transform.position + new Vector3(0, - movementSpeed * Time.deltaTime, 0);
         }
     }
 }

@@ -11,13 +11,17 @@ public class LeftPaddleMovement : MonoBehaviour
     }
     void ControlByLeftPlayer()
     {
-        //Set speed and get y axis
-        float verticalInput = Input.GetAxis("Vertical");
+        //Set speed
         float movementSpeed = 5f;
         //Move when pressing W or S
-        if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.W))
         {
-            transform.position = transform.position + new Vector3(0, verticalInput * movementSpeed * Time.deltaTime, 0);
-        }  
+            transform.position = transform.position + new Vector3(0, movementSpeed * Time.deltaTime, 0);
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            transform.position = transform.position + new Vector3(0, -movementSpeed * Time.deltaTime, 0);
+        }
+
     }
 }
