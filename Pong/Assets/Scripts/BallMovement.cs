@@ -2,52 +2,56 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-class RotationMatrix2D
-{
-    public RotationMatrix2D(float Angle)
-    {
-        mMatrix = new float[2, 2];
-        float sinTheta = Mathf.Sin(Angle);
-        float cosTheta = Mathf.Cos(Angle);
-        mMatrix[0, 0] = cosTheta;
-        mMatrix[0, 1] = -sinTheta;
-        mMatrix[1, 0] = sinTheta;
-        mMatrix[1, 1] = cosTheta;
-    }
-}
 public class BallMovement : MonoBehaviour
 {
-    [SerializeField] private float BallSpeed = 10.0f;
-    Rigidbody2D myBody;
+    private Rigidbody2D myBody;
     // Use this for initialization
     void Start()
     {
         myBody = GetComponent<Rigidbody2D>();
-        float launchAngle = Random.Range(-50, 50);
-        Vector2 launchVec = new Vector2(1, 0);
-        float goesLeft = Random.Range(-1, 1);
-        if (goesLeft > 0.0f)
+        Invoke("GoBall", 2);
+    }
+
+    void Restart()
+    {
+        Reset();
+        Invoke("GoBall", 1);
+    }
+
+    void Reset()
+    {
+        myBody.velocity = Vector2.zero;
+        transform.position = Vector2.zero;
+    }
+
+    void GoBall()
+    {
+        float rand = Random.Range(0, 2);
+        if (rand < 1)
         {
-            launchAngle += 180.0f;
-            launchVec = Math.ApplyRotationTo(launchVec, launchAngle);
-            myBody.velocity = launchVec; 
+            myBody.AddForce(new Vector2(20, -15));
+        }
+        else
+        {
+            myBody.AddForce(new Vector2(-20, -15));
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnCollisionEnter2D(Collision2D coll)
     {
-        BallBounce(); 
-    }
-    void BallBounce()
-    {
-        if (transform.position.y > 3.45f)
+        if (coll.collider.CompareTag("Player"))
         {
-            myBody.velocity = new Vector2(myBody.velocity.x, -myBody.velocity.y);
+            Vector2 vel;
+            vel.x = myBody.velocity.x;
+            vel.y = (myBody.velocity.y / 2) + (coll.collider.attachedRigidbody.velocity.y / 3);
+            myBody.velocity = vel;
         }
-        if (transform.position.y > -3.45f)
+        if (coll.collider.CompareTag("Border"))
         {
-            myBody.velocity = new Vector2(myBody.velocity.x, -myBody.velocity.y);
+            Vector2 vel;
+            vel.x = myBody.velocity.x;
+            vel.y = (myBody.velocity.y / 2) + (coll.collider.attachedRigidbody.velocity.y / 3);
+            myBody.velocity = vel;
         }
     }
 }
