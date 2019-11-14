@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class BallMovement : MonoBehaviour
 {
+    int LeftScore = 0;
+    int RightScore = 0; 
     private Rigidbody2D myBody;
+    Collision2D coll; 
     float speed = 8; 
     // Use this for initialization
     void Start()
     {
         myBody = GetComponent<Rigidbody2D>();
         Invoke("GoBall", 2);
+    }
+
+    private void Update()
+    {
+        ScoringSystem();
     }
 
     void Restart()
@@ -21,7 +29,8 @@ public class BallMovement : MonoBehaviour
 
     void Reset()
     {
-        transform.position = Vector2.zero;
+        transform.position = new Vector2 (0, 0);
+        GoBall();
     }
 
     void GoBall()
@@ -40,7 +49,7 @@ public class BallMovement : MonoBehaviour
             myBody.velocity = newVelocity * speed;
         }
     }
-
+/*
     void OnCollisionEnter2D(Collision2D coll)
     {
         if (coll.collider.CompareTag("Player"))
@@ -56,6 +65,20 @@ public class BallMovement : MonoBehaviour
             vel.x = myBody.velocity.x;
             vel.y = (myBody.velocity.y / 1) + (coll.collider.attachedRigidbody.velocity.y / 3);
             myBody.velocity = vel;
+        }
+    }
+    */
+    void ScoringSystem()
+    {
+        if (coll.collider.CompareTag("LeftWall"))
+        {
+            RightScore += 1;
+            Reset();
+        }
+        if (coll.collider.CompareTag("RightWall"))
+        {
+            LeftScore += 1;
+            Reset();
         }
     }
 }
