@@ -130,7 +130,6 @@ GameObject:
   m_Component:
   - component: {fileID: 202041292}
   - component: {fileID: 202041291}
-  - component: {fileID: 202041294}
   - component: {fileID: 202041293}
   m_Layer: 0
   m_Name: LeftWall
@@ -227,18 +226,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &202041294
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 202041290}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5f6d89129ecf6a4087dc1fbaff0972e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &249825050
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,7 +274,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.05
+  m_Mass: 0.0001
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -1001,7 +988,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1690177293}
   - component: {fileID: 1690177292}
-  - component: {fileID: 1690177295}
   - component: {fileID: 1690177294}
   m_Layer: 0
   m_Name: RightWall
@@ -1098,15 +1084,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1690177295
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1690177291}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5f6d89129ecf6a4087dc1fbaff0972e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

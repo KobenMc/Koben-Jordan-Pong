@@ -5,6 +5,7 @@ using UnityEngine;
 public class BallMovement : MonoBehaviour
 {
     private Rigidbody2D myBody;
+    float speed = 8; 
     // Use this for initialization
     void Start()
     {
@@ -20,20 +21,23 @@ public class BallMovement : MonoBehaviour
 
     void Reset()
     {
-        myBody.velocity = Vector2.zero;
         transform.position = Vector2.zero;
     }
 
     void GoBall()
     {
-        float rand = Random.Range(0, 2);
-        if (rand < 1)
+        float rand = Random.Range(0, 2); 
+        if (rand <1)
         {
-            myBody.AddForce(new Vector2(20, -15));
+            float theta = Random.Range(-35.0f, 35.0f);
+            Vector2 newVelocity = Quaternion.AngleAxis(theta, new Vector3(0, 0, 1)) * new Vector2(1, 0);
+            myBody.velocity = newVelocity * speed;
         }
         else
         {
-            myBody.AddForce(new Vector2(-20, -15));
+            float theta = Random.Range(-35.0f, 35.0f);
+            Vector2 newVelocity = Quaternion.AngleAxis(theta, new Vector3(0, 0, 1)) * new Vector2(-1, 0);
+            myBody.velocity = newVelocity * speed;
         }
     }
 
@@ -43,14 +47,14 @@ public class BallMovement : MonoBehaviour
         {
             Vector2 vel;
             vel.x = myBody.velocity.x;
-            vel.y = (myBody.velocity.y / 2) + (coll.collider.attachedRigidbody.velocity.y / 3);
+            vel.y = (myBody.velocity.y / 1) + (coll.collider.attachedRigidbody.velocity.y / 3);
             myBody.velocity = vel;
         }
         if (coll.collider.CompareTag("Border"))
         {
             Vector2 vel;
             vel.x = myBody.velocity.x;
-            vel.y = (myBody.velocity.y / 2) + (coll.collider.attachedRigidbody.velocity.y / 3);
+            vel.y = (myBody.velocity.y / 1) + (coll.collider.attachedRigidbody.velocity.y / 3);
             myBody.velocity = vel;
         }
     }
