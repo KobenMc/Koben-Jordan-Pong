@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StartScreen.unity
     guid: 1f798847284867c43b56826e003937a1
+  - enabled: 1
+    path: Assets/Scenes/Koben-Jordan-Pong.unity
+    guid: d49044e8c2f29224aa72cc919c9c1560
   m_configObjects: {}

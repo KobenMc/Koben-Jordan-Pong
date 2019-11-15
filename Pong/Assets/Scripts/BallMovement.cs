@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class BallMovement : MonoBehaviour
 {
+    AudioSource source;
     public int Hits; 
     int LeftScore;
     int RightScore; 
     private Rigidbody2D myBody;
-    
+    public AudioClip BounceEffect1;
     float speed; 
     // Use this for initialization
 
     void Start()
     {
+        source = GetComponent<AudioSource>();
         myBody = GetComponent<Rigidbody2D>();
         Invoke("GoBall", 1);
     }
@@ -66,6 +68,7 @@ public class BallMovement : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             Hits++;
+            source.Play();
             speed += .2f;
         }
     }
