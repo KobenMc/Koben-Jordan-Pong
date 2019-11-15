@@ -7,7 +7,7 @@ public class SceneChanger : MonoBehaviour
 {
     public void GoToFinalScene()
     {
-        SceneManager.LoadScene("FinalScene");
+        SceneManager.LoadScene("Koben-Jordan-Pong");
     }
 
 }
