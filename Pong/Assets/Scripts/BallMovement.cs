@@ -1,23 +1,23 @@
-﻿using System.Collections;
+﻿  using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BallMovement : MonoBehaviour
 {
-    AudioSource source;
+    public AudioClip HitEffect; 
     public int Hits; 
-    int LeftScore;
-    int RightScore; 
-    private Rigidbody2D myBody;
-    public AudioClip BounceEffect1;
+    public int LeftScore;
+    public int RightScore;
+    private Rigidbody2D myBody; 
     float speed; 
     // Use this for initialization
 
     void Start()
     {
-        source = GetComponent<AudioSource>();
         myBody = GetComponent<Rigidbody2D>();
         Invoke("GoBall", 1);
+        GetComponent<AudioSource>().playOnAwake = false;
+        GetComponent<AudioSource>().clip = HitEffect;
     }
 
     void Restart()
@@ -68,8 +68,7 @@ public class BallMovement : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             Hits++;
-            source.Play();
-            speed += .2f;
+            GetComponent < AudioSource>().Play(); 
         }
     }
 }
