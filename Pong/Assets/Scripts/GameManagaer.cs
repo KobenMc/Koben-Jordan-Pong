@@ -23,5 +23,13 @@ public class GameManagaer : MonoBehaviour
                 RightScore.text = Ball.RightScore.ToString();
             }
         }
+        if (Ball.LeftScore == 10)
+        {
+            GetComponent<AudioSource>().Play();
+        }
+        if (Ball.RightScore == 10)
+        {
+            GetComponent<AudioSource>().Play();
+        }
     }
 }
