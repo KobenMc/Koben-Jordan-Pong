@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class BallMovement : MonoBehaviour
 {
-    public AudioClip HitEffect;
     public int Hits;
     public int LeftScore;
     public int RightScore;
@@ -17,8 +16,7 @@ public class BallMovement : MonoBehaviour
     {
         myBody = GetComponent<Rigidbody2D>();
         Invoke("GoBall", 1);
-        GetComponent<AudioSource>().playOnAwake = false;
-        GetComponent<AudioSource>().clip = HitEffect;
+
     }
 
     private void Update()
@@ -68,7 +66,7 @@ public class BallMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("RightWall"))
+        if (collision.gameObject.tag == "RightWall")
         {
             LeftScore += 1;
             Reset();
@@ -81,7 +79,7 @@ public class BallMovement : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             Hits++;
-            GetComponent < AudioSource>().Play(); 
+            GetComponent<AudioSource>().Play(); 
         }
     }
 }
