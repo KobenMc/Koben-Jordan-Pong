@@ -14,4 +14,9 @@ public class SceneChanger : MonoBehaviour
     {
         SceneManager.LoadScene("FinalScene");
     }
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("StartScreen");
+    }
 }
