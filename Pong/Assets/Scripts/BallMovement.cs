@@ -1,15 +1,16 @@
 ﻿  using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement; 
 using UnityEngine;
 
 public class BallMovement : MonoBehaviour
 {
-    public AudioClip HitEffect; 
-    public int Hits; 
+    public AudioClip HitEffect;
+    public int Hits;
     public int LeftScore;
     public int RightScore;
-    private Rigidbody2D myBody; 
-    float speed; 
+    private Rigidbody2D myBody;
+    float speed;
     // Use this for initialization
 
     void Start()
@@ -20,26 +21,38 @@ public class BallMovement : MonoBehaviour
         GetComponent<AudioSource>().clip = HitEffect;
     }
 
+    private void Update()
+    {
+        if (RightScore == 10)
+        {
+            SceneManager.LoadScene("Player1Wins");
+        }
+        if (LeftScore == 10)
+        {
+            SceneManager.LoadScene("Player2Wins");
+        }
+    }
+
     void Restart()
     {
         RightScore = 0;
         LeftScore = 0;
-        Hits = 0; 
+        Hits = 0;
         Reset();
         Invoke("GoBall", 1);
     }
 
     void Reset()
     {
-        transform.position = new Vector3 (0, 0,0);
+        transform.position = new Vector3(0, 0, 0);
         GoBall();
     }
 
     void GoBall()
     {
-        speed = 8; 
-        float rand = Random.Range(0, 2); 
-        if (rand <1)
+        speed = 8;
+        float rand = Random.Range(0, 2);
+        if (rand < 1)
         {
             float theta = Random.Range(-35.0f, 35.0f);
             Vector2 newVelocity = Quaternion.AngleAxis(theta, new Vector3(0, 0, 1)) * new Vector2(1, 0);
