@@ -23,11 +23,11 @@ public class BallMovement : MonoBehaviour
     {
         if (RightScore == 10)
         {
-            SceneManager.LoadScene("Player1Wins");
+            SceneManager.LoadScene("Player2Wins 1");
         }
         if (LeftScore == 10)
         {
-            SceneManager.LoadScene("Player2Wins");
+            SceneManager.LoadScene("Player1Wins 1");
         }
     }
 
